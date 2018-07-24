@@ -1,3 +1,5 @@
+// Map component and default settings
+
 import React from 'react';
 import FourSquare from './fourSquare';
 import { compose, withStateHandlers } from "recompose";
