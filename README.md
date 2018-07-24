@@ -8,7 +8,7 @@ This is a single page application featuring a map of Tbilisi, Georgia, and some 
 - Open the root folder of the repository in a terminal
 - Run `npm install`
 - Run `npm start`
-- Visit http://localhost:8000
+- Visit http://localhost:3000
 
 ###### Notes
 This project utilises:
