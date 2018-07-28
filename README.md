@@ -12,8 +12,12 @@ This is a single page application featuring a map of Tbilisi, Georgia, and some 
 
 ###### Notes
 This project utilises:
+- Third party APIs, including Google Maps and Foursquare
 - `react-google-maps`
 - `react-foursquare`
+
+###### Warning
+- This project uses the default service-worker and it only works in production mode
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
