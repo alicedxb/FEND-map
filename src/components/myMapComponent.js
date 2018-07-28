@@ -1,5 +1,6 @@
 // Map component and default settings
 
+/*global google*/
 import React from 'react';
 import FourSquare from './fourSquare';
 import { compose, withStateHandlers } from "recompose";
@@ -23,13 +24,19 @@ const MapWithAMakredInfoWindow = compose(
     withScriptjs,
     withGoogleMap
 )(props =>{
-  let markers = props.locations.map(loc =>{
+  let markers = props.locations.map((loc, i) =>{
     return (
-      <Marker key={loc.id} position={loc.loc} onClick={() => props.display(loc.id)} >
-      {props.show === loc.id ?<InfoWindow onCloseClick={() => props.closeDetail()}>
-        <FourSquare ll={loc.loc.lat+','+loc.loc.lng} query={loc.query} />
-      </InfoWindow>:null}
-      </Marker>
+            <Marker 
+            animation={props.current === loc.id ?google.maps.Animation.BOUNCE:google.maps.Animation.DROP}
+            key={loc.id} position={loc.loc} onClick={() => props.display(loc.id)} >
+            {props.show === loc.id ?<InfoWindow
+             onCloseClick={() => props.closeDetail()}>
+                <div>
+                  <FourSquare ll={loc.loc.lat+','+loc.loc.lng} query={loc.query} />
+                  <a href={loc.url} className="alink">read more on foursquare</a>
+                </div>
+            </InfoWindow>:null}
+            </Marker>
     )
 })
 if(props.selected && props.current){
@@ -37,9 +44,14 @@ if(props.selected && props.current){
   markers = props.locations.map((loc, i) =>{
     return (
       <div key={loc.id}>{props.selected === i+1 ?
-        <Marker position={loc.loc} onClick={() => props.display(loc.id)} >
-        {props.show === loc.id ?<InfoWindow onCloseClick={() => props.closeDetail()}>
-          <FourSquare ll={loc.loc.lat+','+loc.loc.lng} query={loc.query} />
+        <Marker defaultAnimation={google.maps.Animation.BOUNCE}
+         position={loc.loc} onClick={() => props.display(loc.id)} >
+        {props.show === loc.id ?<InfoWindow  
+         onCloseClick={() => props.closeDetail()}>
+          <div>
+            <FourSquare ll={loc.loc.lat+','+loc.loc.lng} query={loc.query} />
+            <a href={loc.url} className="alink">read more on foursquare</a>
+          </div>
         </InfoWindow>:null}
         </Marker>:null}
       </div>
